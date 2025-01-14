@@ -6,7 +6,8 @@ module Api
         prices = PotatoPrice
           .where(time: date.beginning_of_day..date.end_of_day)
           .order(:time)
-          .select(:time, :value)
+          .pluck(:time, :value)
+          .map { |time, value| {time: time, value: value} }
 
         render json: prices
       end
