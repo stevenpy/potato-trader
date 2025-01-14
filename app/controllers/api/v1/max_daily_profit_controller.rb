@@ -11,26 +11,7 @@ module Api
       private
 
       def calculate_max_profit(date)
-        prices = PotatoPrice
-          .where(time: date.beginning_of_day..date.end_of_day)
-          .order(:time)
-          .pluck(:value)
-
-        return 0 if prices.empty?
-
-        max_profit = 0
-        min_price = prices.first
-
-        prices.each do |price|
-          if price < min_price
-            min_price = price
-          else
-            current_profit = (price - min_price) * 100
-            max_profit = [max_profit, current_profit].max
-          end
-        end
-
-        max_profit
+        DailyProfitCalculator.new(date).call
       end
     end
   end
