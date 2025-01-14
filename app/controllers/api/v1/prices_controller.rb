@@ -1,7 +1,7 @@
 module Api
   module V1
-    class DailyPricesController < ApplicationController
-      def show
+    class PricesController < ApplicationController
+      def daily_prices
         date = Date.parse(params[:date])
         prices = PotatoPrice
           .where(time: date.beginning_of_day..date.end_of_day)

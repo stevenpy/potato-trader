@@ -1,7 +1,7 @@
 module Api
   module V1
-    class MaxDailyProfitController < ApplicationController
-      def show
+    class ProfitsController < ApplicationController
+      def max_potential_profit
         date = Date.parse(params[:date])
         max_profit = calculate_max_profit(date)
 
