@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "daily_prices/:date", to: "daily_prices#show"
+      get "max_daily_profit/:date", to: "max_daily_profit#show"
     end
   end
 end
