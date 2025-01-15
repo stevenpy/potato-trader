@@ -13,7 +13,5 @@ class ApplicationController < ActionController::API
     date = Date.parse(params[:date])
     raise ApiErrors::InvalidDateError if date > Date.today
     date
-  rescue Date::Error
-    raise ApiErrors::InvalidDateError
   end
 end
