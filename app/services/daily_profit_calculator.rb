@@ -7,7 +7,7 @@ class DailyProfitCalculator
 
   def call
     prices = fetch_prices
-    return 0 if prices.empty?
+    raise ApiErrors::NoDataAvailableError if prices.empty?
 
     calculate_max_profit(prices)
   end

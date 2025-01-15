@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   rescue_from Date::Error, ApiErrors::InvalidDateError do |e|
-    render json: {error: "Invalid date format. Please use YYYY-MM-DD"}, status: :bad_request
+    render json: {error: "Invalid date format. Please use YYYY-MM-DD and ensure the date is not in the future"}, status: :bad_request
   end
 
   rescue_from ApiErrors::NoDataAvailableError do |e|
