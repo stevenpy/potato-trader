@@ -16,8 +16,7 @@ class DailyProfitCalculator
 
   def fetch_prices
     PotatoPrice
-      .where("time BETWEEN ? AND ?", @date.beginning_of_day, @date.end_of_day)
-      .order(:time)
+      .for_date(@date)
       .pluck(:value)
   end
 

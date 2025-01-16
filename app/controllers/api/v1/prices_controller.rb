@@ -13,8 +13,7 @@ module Api
 
       def fetch_prices_per_date(date)
         PotatoPrice
-          .where("time BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day)
-          .order(:time)
+          .for_date(date)
           .pluck(:time, :value)
           .map { |time, value| {time: time, value: value} }
       end
