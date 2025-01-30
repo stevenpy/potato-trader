@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe DailyProfitCalculator do
   describe "#call" do
     let(:date) { "2022-08-22".to_date }
-    let(:calculator) { described_class.new(date) }
+    let(:calculator) { described_class.new(date, PotatoPrice) }
 
     context "when prices exist for the date" do
       before do

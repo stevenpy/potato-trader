@@ -11,7 +11,7 @@ module Api
       private
 
       def calculate_max_profit(date)
-        DailyProfitCalculator.new(date).call
+        DailyProfitCalculator.new(date, PotatoPrice).call
       end
     end
   end

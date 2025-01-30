@@ -1,8 +1,9 @@
 class DailyProfitCalculator
   MAX_TONNES = 100
 
-  def initialize(date)
+  def initialize(date, price_model)
     @date = date
+    @price_model = price_model
   end
 
   def call
@@ -15,7 +16,7 @@ class DailyProfitCalculator
   private
 
   def fetch_prices
-    PotatoPrice
+    @price_model
       .for_date(@date)
       .pluck(:value)
   end
@@ -28,11 +29,11 @@ class DailyProfitCalculator
       if price < min_price
         min_price = price
       else
-        current_profit = (price - min_price) * MAX_TONNES
+        current_profit = (price - min_price)
         max_profit = [max_profit, current_profit].max
       end
     end
 
-    max_profit
+    max_profit * MAX_TONNES
   end
 end
